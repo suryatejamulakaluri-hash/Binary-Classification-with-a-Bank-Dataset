@@ -40,9 +40,57 @@ kaggle competitions download -c playground-series-s5e8
 ````
 ## Dataset Description
 
-The dataset consists of 750,000 records and 9 numerical variables, including the target variable y, making it a large-scale binary classification problem. The features include demographic and campaign-related information such as age, account balance, day of contact, call duration, number of campaign contacts (campaign), previous contacts (previous), and pdays (number of days since last contact).
+The dataset contains 750,000 records with 18 features, including one binary target variable y. It is a large-scale supervised classification problem derived from a marketing campaign dataset.
 
-The target variable y is binary (0 or 1), with a mean value of 0.1207, indicating class imbalance (~12% positive class). Some variables such as balance and duration show high variability and contain extreme values, while pdays includes -1 values indicating no previous contact. Proper preprocessing such as handling missing/placeholder values and scaling was required before model training.
+Numerical Features:
+
+age
+
+balance
+
+day
+
+duration
+
+campaign
+
+pdays
+
+previous
+
+id (unique identifier)
+
+The numerical variables show high variability, especially balance, duration, and pdays, which contain extreme values. The feature pdays includes -1, indicating customers who were not previously contacted.
+
+Categorical Features:
+
+job
+
+marital
+
+education
+
+default
+
+housing
+
+loan
+
+contact
+
+month
+
+poutcome
+
+These categorical variables describe demographic, financial, and campaign-related attributes of customers.
+
+Target Variable:
+
+y (Binary: 0 or 1)
+
+The target variable has a mean of approximately 0.1207, indicating class imbalance (~12% positive class).
+
+Overall, the dataset consists of a mix of numerical and categorical features, requiring preprocessing steps such as encoding categorical variables, handling imbalance, and feature scaling before model training.
 
 ---
 
