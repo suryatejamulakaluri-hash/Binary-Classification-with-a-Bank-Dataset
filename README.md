@@ -38,6 +38,11 @@ Download via CLI:
 ```bash
 kaggle competitions download -c playground-series-s5e8
 ````
+## Dataset Description
+
+The dataset consists of 750,000 records and 9 numerical variables, including the target variable y, making it a large-scale binary classification problem. The features include demographic and campaign-related information such as age, account balance, day of contact, call duration, number of campaign contacts (campaign), previous contacts (previous), and pdays (number of days since last contact).
+
+The target variable y is binary (0 or 1), with a mean value of 0.1207, indicating class imbalance (~12% positive class). Some variables such as balance and duration show high variability and contain extreme values, while pdays includes -1 values indicating no previous contact. Proper preprocessing such as handling missing/placeholder values and scaling was required before model training.
 
 ---
 
@@ -181,6 +186,14 @@ Performance
 | XGBoost             | 0.9291   | 0.7931 | 0.7527    | 0.6138 | 0.6762 | 0.641  |
 | Naive Bayes         | 0.8447   | 0.7917 | 0.4171    | 0.7219 | 0.5287 | 0.4676 |
 
+| ML Model Name                | Observation about Model Performance                                                                                                                                                                                                                                                                                                                            |
+| ---------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Logistic Regression**      | Logistic Regression achieved good overall accuracy (0.884) but had relatively low recall (0.3117), meaning it missed many positive cases. Its moderate precision (0.5332) indicates it makes reasonable positive predictions but struggles with capturing minority patterns. As a linear model, it may not fully capture complex relationships in the dataset. |
+| **Decision Tree**            | The Decision Tree achieved very high recall (0.9156), meaning it successfully identified most positive cases. However, its precision (0.3506) is low, indicating many false positives. This suggests the model is aggressive in predicting the positive class and may be slightly overfitting despite depth and split constraints.                             |
+| **kNN**                      | kNN produced balanced performance with decent accuracy (0.9088) and moderate F1-score (0.5699). Precision (0.6607) is relatively strong, but recall (0.5011) shows it misses some positives. Performance depends heavily on feature scaling and distance metrics, and it may struggle with high-dimensional data.                                              |
+| **Naive Bayes**              | Naive Bayes achieved good recall (0.7219) but relatively low precision (0.4171). This suggests it predicts many positives but also generates false alarms. Since it assumes feature independence, performance may be limited if features are correlated. It performs reasonably well given its simplicity.                                                     |
+| **Random Forest (Ensemble)** | Random Forest delivered the best overall balance, achieving high accuracy (0.9197), strong recall (0.844), and the highest F1-score (0.7172) and MCC (0.682). The ensemble approach reduces overfitting and improves generalization, making it the most stable and reliable model for this dataset.                                                            |
+| **XGBoost (Ensemble)**       | XGBoost achieved the highest accuracy (0.9291) and strongest precision (0.7527), meaning it is very confident in positive predictions. However, its recall (0.6138) is lower than Random Forest. It performs very well overall and handles complex feature interactions effectively, but slightly underperforms RF in balanced metrics (F1, MCC).              |
 
 Best overall balance: Random Forest
 Highest accuracy: XGBoost
